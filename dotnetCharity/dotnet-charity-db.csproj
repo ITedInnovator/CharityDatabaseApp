@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>dotnet_charity_db</RootNamespace>
+    <UserSecretsId>ef4c6453-a20d-412b-aa7c-3480911c1fa3</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper.Extensions.PostgreSQL" Version="4.2.4"/>
+    <PackageReference Include="Npgsql" Version="7.0.4"/>
+    <PackageReference Include="Npgsql.DependencyInjection" Version="7.0.4"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0"/>
+  </ItemGroup>
+</Project>

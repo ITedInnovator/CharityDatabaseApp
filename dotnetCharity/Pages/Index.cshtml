@@ -1,0 +1,19 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Charity Database</h1>
+    <h2>All Charities</h2>
+    @foreach (var Charity in Model.Charities)
+    {
+        <div class="card">
+        <h3>@Charity.CharityName</h3>
+        <p>@Charity.Description</p>
+        <p>Location: <span class="city">@Charity.City</span></p>
+        </div>
+
+    }
+</div>

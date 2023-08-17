@@ -1,5 +1,6 @@
 using Dapper;
 using dotnet_charity_db;
+using dotnet_charity_db.Services;
 using Npgsql;
 using Npgsql.Replication.PgOutput.Messages;
 
@@ -29,6 +30,10 @@ await using var connection = await dataSource.OpenConnectionAsync();
     };
     await batch.ExecuteNonQueryAsync();
 
+builder.Services.AddScoped<IDbService, DbService>();
+builder.Services.AddScoped<ICharityService, CharityService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,3 +54,5 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+
+public partial class Program { }

@@ -9,7 +9,7 @@ class CharityService : ICharityService {
         _dbService = dbService;
     }
 
-    public async Task<IEnumerable<Charity>> GetCharities(){
-        return await _dbService.GetAll<Charity>( $"SELECT * FROM Charities;",new {});
+    public async Task<IEnumerable<Charity>> GetCharities(string tableName){
+        return await _dbService.GetAll<Charity>( $"SELECT * FROM {tableName};",new { });
     }
 }

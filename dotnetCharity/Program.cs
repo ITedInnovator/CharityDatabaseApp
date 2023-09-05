@@ -1,17 +1,20 @@
 using Dapper;
 using dotnet_charity_db;
+using dotnet_charity_db.Models;
 using dotnet_charity_db.Services;
+using Newtonsoft.Json;
 using Npgsql;
 using Npgsql.Replication.PgOutput.Messages;
-
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.SwaggerUI;
+using dotnet_charity_db.Startup;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var ConnectionString = builder.Configuration["ConnectionString"];
-
-// Add services to the container.
-builder.Services.AddRazorPages();
-
+if (builder.Environment.IsDevelopment())
+{
+    var ConnectionString = builder.Configuration["ConnectionString"];
 builder.Services.AddNpgsqlDataSource(ConnectionString);
 
 await using var dataSource = NpgsqlDataSource.Create(ConnectionString);
@@ -30,12 +33,29 @@ await using var connection = await dataSource.OpenConnectionAsync();
     };
     await batch.ExecuteNonQueryAsync();
 
-builder.Services.AddScoped<IDbService, DbService>();
-builder.Services.AddScoped<ICharityService, CharityService>();
+    IDbService dbService = new DbService(connection);
+}
+else if(builder.Environment.Equals("test"))
+{
+    var ConnectionString = builder.Configuration["TestConnectionString"];
+    IServiceCollection serviceCollection = builder.Services.AddNpgsqlDataSource(ConnectionString);
+}
+
+
+
+// Add services to the container.
+
+builder.Services.RegisterServices();
+
 
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -52,6 +72,10 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+
+
+Api.ConfigureApi(app);
 
 app.Run();
 

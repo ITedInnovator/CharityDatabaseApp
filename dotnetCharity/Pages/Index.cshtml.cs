@@ -23,7 +23,7 @@ public class IndexModel : PageModel
     public async Task OnGet()
     {
 
-       Charities = await _charityService.GetCharities();
+       Charities = await _charityService.GetCharities("Charities");
     }
 
     // private async Task<IEnumerable<Charity>> GetCharities(){

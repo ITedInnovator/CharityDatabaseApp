@@ -4,25 +4,20 @@ namespace dotnet_charity_db.Models;
 
 public class Charity {
 
-    public string CharityName;
-    public string Description;
-    public string AddressLine1;
+    public string CharityName { get; set; }
+    public string Description { get; set; }
+    public string AddressLine1 { get; set; }
+    public string AddressLine2 { get; set; }
 
-    public string AddressLine2;
-    public string AddressLine3;
+    public string AddressLine3 { get; set; }
 
-    public string City;
+    public string City { get; set; }
 
-    public string PostCode;
+    public string PostCode { get; set; }
 
-    public Charity(Int32 charityId, string Charityname, string Description, string AddressLine1, string AddressLine2, string AddressLine3, string City, string PostCode){
-        this.CharityName = Charityname;
-        this.Description = Description;
-        this.AddressLine1 = AddressLine1;
-        this.AddressLine2 = AddressLine2;
-        this.AddressLine3 = AddressLine3;
-        this.City = City;
-        this.PostCode = PostCode;
+    public Charity(
+        )
+    {
 
     }
 

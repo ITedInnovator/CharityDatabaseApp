@@ -7,10 +7,9 @@ using System.Diagnostics;
 namespace dotnetCharity.Test;
 
 [SetUpFixture]
-public class Application : WebApplicationFactory<Program> {
-
+public class TestsSetup {
     
-    public Application(){
+    public TestsSetup(){
         
     }
 

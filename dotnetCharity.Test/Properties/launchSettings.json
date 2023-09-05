@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "dotnetCharity.Test": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "test"
+      },
+      "applicationUrl": "https://localhost:50132;http://localhost:50133"
+    }
+  }
+}
